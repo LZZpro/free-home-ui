@@ -1,0 +1,35 @@
+/* 设置页面整体布局 */
+.video-detail-page {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .video-section {
+    flex: 3;
+    padding-right: 20px;
+  }
+  
+  .author-section {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    text-align: center; /* 居中对齐 */
+  }
+  
+  .author-avatar {
+    width: 100px; /* 根据需要调整大小 */
+    height: 100px;
+    border-radius: 50%; /* 圆形头像 */
+    margin-bottom: 10px;
+  }
+  
+  .author-name {
+    margin-top: 10px;
+    font-size: 24px;
+  }
+  
+  .author-description {
+    font-size: 16px;
+  }
+  
