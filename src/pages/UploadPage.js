@@ -1,10 +1,51 @@
 import React from 'react';
-import { Upload } from '@douyinfe/semi-ui';
+import { Upload, Button } from '@douyinfe/semi-ui';
 import '../css/UploadPage.css';
-import { IconBolt } from '@douyinfe/semi-icons';
+import { IconUpload,IconBolt } from '@douyinfe/semi-icons';
 import imgURL from '../assets/dowload.jpg'
 
 const UploadPage = () => {
+  let action = 'http://localhost:8886/home/uploadVideo';
+  // let imageOnly = 'image/*';
+  let videoOnly = 'video/*';
+
+
+  // 自定义上传函数
+  const customRequest = ({ file, onProgress, onSuccess, onError }) => {
+    // 创建 FormData 对象
+    const formData = new FormData();
+    formData.append('video', file); // 将文件追加到 FormData 中
+
+    // 发送 POST 请求，上传文件
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', action, true);
+
+    // 监听上传进度
+    xhr.upload.onprogress = (event) => {
+      if (event.lengthComputable) {
+        const percent = Math.round((event.loaded / event.total) * 100);
+        onProgress({ percent });
+      }
+    };
+
+    // 上传成功
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        onSuccess(xhr.response);
+      } else {
+        onError(new Error('Upload failed'));
+      }
+    };
+
+    // 上传失败
+    xhr.onerror = () => {
+      onError(new Error('Upload failed'));
+    };
+
+    // 发送请求
+    xhr.send(formData);
+  };
+
   return (
     <div className="upload-page">
       <aside className="sidebar">
@@ -23,12 +64,13 @@ const UploadPage = () => {
       <section className="upload-section">
         <div className="upload-header">
           <h2>视频投稿</h2>
-          <Upload
-            action="https://api.semi.design/upload"
+           <Upload action={action} 
+            accept={videoOnly}
+            customRequest={customRequest} // 使用自定义上传函数 
+            style={{ marginTop: 10 }}
             dragIcon={<IconBolt />}
             draggable={true}
-            accept="application/pdf,.jpeg"
-            style={{ marginTop: 10 }}
+            showUploadList={false} // 是否显示上传列表
           >
             <div className="components-upload-demo-drag-area">
               <img
@@ -46,7 +88,10 @@ const UploadPage = () => {
                   color: 'var(--semi-color-tertiary)',
                 }}
               >
-                点击上传文件或拖拽文件到这里
+                <span>点击上传文件或拖拽文件到这里</span>
+                <Button icon={<IconUpload />} theme="light">
+                    上传视频
+                </Button>
               </div>
             </div>
           </Upload>
