@@ -8,7 +8,7 @@ const VideoDetailPage = () => {
     const videoObj = JSON.parse(videoParams);
     console.log('videoObj',videoObj)
   // 根据 ID 获取视频的 URL 或其他详细信息
-  const videoUrl = `https://www.w3schools.com/html/${urlSegment}`; // 这里应替换为实际的视频 URL
+  const videoUrl = `http://localhost:8886/home/video/${urlSegment}`; // 这里应替换为实际的视频 URL
 
   return ( 
     <div className="video-detail-page">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import LoginRegisterModal from './LoginRegisterModal';
 import { Avatar } from '@douyinfe/semi-ui';
 import '../css/Navbar.css';
@@ -19,6 +19,12 @@ const Navbar = () => {
   const handleLoginSuccess = (username) => {
     setUser({ username, avatarUrl: 'https://placekitten.com/100/100' }); // Simulate avatar URL
   };
+
+  const handlePostClick = () => {
+    // 处理“投稿”按钮点击事件的逻辑
+    window.open('/upload'); // 假设点击后打开一个新的页面
+  };
+  
 
   return (
     <nav className="navbar">
@@ -52,8 +58,7 @@ const Navbar = () => {
         <Link to="/activities" className="nav-icon">📢动态</Link>
         <Link to="/favorites" className="nav-icon">⭐收藏</Link>
         <Link to="/history" className="nav-icon">🕓历史</Link>
-        <Link to="/creator" className="nav-icon">✍️创作中心</Link>
-        <Link to="/submit" className="submit-button">投稿</Link>
+        <button className="submit-button" onClick={handlePostClick}>投稿</button>
       </div>
     </nav>
   );

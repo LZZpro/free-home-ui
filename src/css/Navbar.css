@@ -29,7 +29,7 @@
 }
 
 .nav-links a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .search-input {
@@ -56,8 +56,12 @@
   font-weight: bold;
 }
 
+.navbar-right a:hover {
+  text-decoration: none;
+}
+
 .submit-button {
-  background-color: pink;
+  background-color: #fb7299;
   padding: 5px 10px;
   border-radius: 5px;
   border: none;
@@ -65,5 +69,5 @@
 }
 
 .nav-icon:hover, .nav-button:hover, .submit-button:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }

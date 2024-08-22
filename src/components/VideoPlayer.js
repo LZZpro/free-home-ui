@@ -6,7 +6,8 @@ const VideoPlayer = ({ videoUrl }) => {
   const canvasRef = useRef(null);
   const [thumbnail, setThumbnail] = useState('');
   
-  const completeUrl = 'https://www.w3schools.com/html/'+videoUrl;
+  // const completeUrl = 'https://www.w3schools.com/html/'+videoUrl;
+  const completeUrl = 'http://localhost:8886/home/video/'+videoUrl;
 
   const captureThumbnail = () => {
     const player = playerRef.current.getInternalPlayer();

@@ -5,7 +5,8 @@ import '../css/VideoGrid.css';
 const videos = [
     {
       id: 1,
-      videoUrl: 'mov_bbb.mp4',
+      // videoUrl: 'mov_bbb.mp4',
+      videoUrl: 'FVLTYqNTLrLqQu.mp4',
       title: '我好喜欢啊',
       views: '132.6万',
       author: '小布呀',
@@ -15,8 +16,9 @@ const videos = [
     },
     {
       id: 2,
-      videoUrl: 'movie.mp4',
-      title: '灰熊：你看你***呢！',
+      // videoUrl: 'movie.mp4',
+      videoUrl: 'FVLTYqNTQtMqUv.mp4',
+      title: '火男：你看你***呢！',
       views: '132.6万',
       author: '丁真',
       avatar: '这是头像',

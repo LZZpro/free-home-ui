@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import VideoDetailPage from './pages/VideoDetailPage';
 import Anime from './pages/Anime';
+import UploadPage from './pages/UploadPage';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route path="/html/:urlSegment" element={<VideoDetailPage />} />
         <Route path='/anime' element={<Anime />} />
+        <Route path="/upload" element={<UploadPage/>} />
       </Routes>
     </Router>
   );
