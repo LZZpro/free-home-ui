@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #00a1d6;
+  background-image: url("../assets/freenight.png");
   padding: 10px 20px;
   color: white;
 }
@@ -19,6 +19,7 @@
 
 .nav-links {
   display: flex;
+  margin-left: 150px;
 }
 
 .nav-links a {

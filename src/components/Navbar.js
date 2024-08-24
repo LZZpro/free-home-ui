@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <img src="/images/freenight.png" alt="freenight" className="logo" />
+        {/* <img src="/images/freenight.png" alt="freenight" className="logo" /> */}
         <div className="nav-links">
           <Link to="/">首页</Link>
           <Link to="/VideoPage">番剧</Link>  

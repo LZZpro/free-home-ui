@@ -3,48 +3,41 @@ import { Upload, Button } from '@douyinfe/semi-ui';
 import '../css/UploadPage.css';
 import { IconUpload,IconBolt } from '@douyinfe/semi-icons';
 import imgURL from '../assets/dowload.jpg'
+import axios from 'axios';
 
 const UploadPage = () => {
+
   let action = 'http://localhost:8886/home/uploadVideo';
   // let imageOnly = 'image/*';
   let videoOnly = 'video/*';
 
-
   // 自定义上传函数
-  const customRequest = ({ file, onProgress, onSuccess, onError }) => {
+  const customUpload = ({ file, onProgress, onSuccess, onError }) => {
     // 创建 FormData 对象
     const formData = new FormData();
     formData.append('video', file); // 将文件追加到 FormData 中
-
-    // 发送 POST 请求，上传文件
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', action, true);
-
-    // 监听上传进度
-    xhr.upload.onprogress = (event) => {
-      if (event.lengthComputable) {
-        const percent = Math.round((event.loaded / event.total) * 100);
-        onProgress({ percent });
-      }
-    };
-
-    // 上传成功
-    xhr.onload = () => {
-      if (xhr.status === 200) {
-        onSuccess(xhr.response);
-      } else {
-        onError(new Error('Upload failed'));
-      }
-    };
-
-    // 上传失败
-    xhr.onerror = () => {
-      onError(new Error('Upload failed'));
-    };
-
-    // 发送请求
-    xhr.send(formData);
-  };
+    
+  // 发送 POST 请求，上传文件
+  axios
+    .post(action, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      // 监听上传进度
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        onProgress({ percent: percentCompleted });
+      },
+    })
+    .then((response) => {
+      onSuccess(response.data);
+      //message.success('Upload successful!');
+    })
+    .catch((error) => {
+      onError(new Error('Upload failed: ' + error.message));
+     // message.error('Upload failed!');
+    });
+};
 
   return (
     <div className="upload-page">
@@ -66,7 +59,7 @@ const UploadPage = () => {
           <h2>视频投稿</h2>
            <Upload action={action} 
             accept={videoOnly}
-            customRequest={customRequest} // 使用自定义上传函数 
+            customRequest={customUpload} // 使用自定义上传函数
             style={{ marginTop: 10 }}
             dragIcon={<IconBolt />}
             draggable={true}
