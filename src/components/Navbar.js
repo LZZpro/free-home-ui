@@ -23,6 +23,7 @@ const Navbar = () => {
   const handlePostClick = () => {
     // 处理“投稿”按钮点击事件的逻辑
     window.open('/upload'); // 假设点击后打开一个新的页面
+
   };
   
 
